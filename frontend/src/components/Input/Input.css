@@ -1,0 +1,25 @@
+.input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-container__label {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 110%;
+  color: rgb(130, 134, 154);
+}
+
+.input-container__input {
+  height: 40px;
+  border: 0;
+  border-bottom: 2px solid #ebebeb;
+  outline: 0;
+}
+
+.input-container__input::placeholder {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 110%;
+  color: rgba(130, 134, 154, 0.5);
+}

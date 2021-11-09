@@ -1,7 +1,7 @@
 .authenticate-sidebar {
-  max-height: 800px;
-  flex-basis: 50%;
-  display: flex;
+  display: none;
+  max-height: 1000px;
+  flex: 1;
   flex-direction: column;
   justify-content: space-between;
   padding: 30px;
@@ -22,6 +22,7 @@
 }
 
 .authenticate-sidebar__img {
+  width: 100%;
   max-width: 360px;
   display: block;
 }
@@ -40,6 +41,12 @@
 }
 
 .authenticate-sidebar__cta-link {
-  text-decoration: none;
+  cursor: pointer;
   color: #f0ae4b;
+}
+
+@media screen and (min-width: 730px) {
+  .authenticate-sidebar {
+    display: flex;
+  }
 }

@@ -6,7 +6,11 @@ import gamesLogo from "../../assets/games-logo.png";
 // css
 import "./AuthenticateSidebar.css";
 
-export default function AuthenticateSidebar() {
+export default function AuthenticateSidebar(props) {
+  const { formStateHandler } = props;
+  const toggleFormState = () => {
+    formStateHandler();
+  };
   return (
     <div className="authenticate-sidebar">
       <div className="authenticate-sidebar__heading">
@@ -20,9 +24,12 @@ export default function AuthenticateSidebar() {
         <span className="authenticate-sidebar__cta-text">
           Don't have an account ?
         </span>
-        <a className="authenticate-sidebar__cta-link" href="/">
+        <span
+          className="authenticate-sidebar__cta-link"
+          onClick={toggleFormState}
+        >
           Click here
-        </a>
+        </span>
       </div>
     </div>
   );
