@@ -1,0 +1,22 @@
+Challenge
+Create the following application using MERN Stack
+Backend
+Create a backend sever application which implements basic JWT authentication
+1.	You must use Express.js library
+2.	We will be looking for well organized, maintainable code. 
+3.	Use MVC Architecture.
+4.	You should use a ODM like mongoose to connect with MongoDb
+5.	The backend should be reasonably secure.
+6.	Endpoints:- Login, Signup, Logout, GetUser
+Frontend
+Create a Frontend application in React and integrate it with your backend application.
+1.	Designs for Login and Signup pages: https://www.figma.com/file/RzmsZs8CPUiVacfLdb2C0h/Sign-In-(Community)?node-id=7%3A1833
+2.	You need not implement Oauth.
+3.	Create one more page which displays logged in user’s full name with a logout button and the page should only be visible to authenticated user.
+4.	Create one more page with logout button which is only visible once logged in.
+5.	You can use any known frontend libraries.
+6.	The authentication state should be persistent, meaning user should stay logged in even after reopening the browser.
+7.	Again, well organized, maintainable code is important. 
+8.	Bonus: Implement proper form validation.
+
+And finally host both of your applications on Heroku, Netlify or any platform of your choice.
