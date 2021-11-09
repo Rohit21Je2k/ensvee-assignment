@@ -14,8 +14,6 @@ export default function AuthenticateFormContainer(props) {
     viewState === "login" ? true : false || true
   );
 
-  let flag = false;
-
   useEffect(() => {
     setIsLoginState(() => {
       return viewState === "login" ? true : false;
