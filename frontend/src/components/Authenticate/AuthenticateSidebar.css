@@ -1,4 +1,5 @@
 .authenticate-sidebar {
+  max-height: 800px;
   flex-basis: 50%;
   display: flex;
   flex-direction: column;

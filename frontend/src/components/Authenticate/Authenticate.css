@@ -1,4 +1,5 @@
 .authenticate-page {
   display: flex;
   min-height: 100vh;
+  max-height: 800px;
 }
