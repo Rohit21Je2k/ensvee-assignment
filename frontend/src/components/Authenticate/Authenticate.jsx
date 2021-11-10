@@ -5,6 +5,8 @@ import AuthenticateSidebar from "./AuthenticateSidebar";
 
 import "./Authenticate.css";
 
+const apiURL = "https://ensvee.herokuapp.com";
+
 export default function Authenticate() {
   const [isLoginState, setIsLoginState] = useState(true);
   const [formValues, setFormValues] = useState({
@@ -23,14 +25,14 @@ export default function Authenticate() {
         password: formValues.repeatPassword,
       };
 
-      let reqUrl = "http://localhost:8000/api/users/signup";
+      let reqUrl = `${apiURL}/api/users/signup`;
 
       if (isLoginState) {
         reqFormValues = {
           email: formValues.email,
           password: formValues.password,
         };
-        reqUrl = "http://localhost:8000/api/users/login";
+        reqUrl = `${apiURL}/api/users/login`;
       }
 
       const response = await fetch(reqUrl, {
@@ -45,8 +47,12 @@ export default function Authenticate() {
       if (responseData.message) {
         alert(responseData.message);
       }
+      if (responseData.token) {
+        alert(isLoginState ? "Logged in" : "User created");
+      }
     } catch (err) {
       alert("Fetching Error");
+      console.log(err);
     }
   };
 

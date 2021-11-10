@@ -24,6 +24,10 @@ app.use((req, res, next) => {
 });
 
 // api
+app.get("/", (req, res) => {
+  res.send("hello");
+});
+
 app.use("/api/users", userRouter);
 
 // path not found
