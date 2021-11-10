@@ -29,7 +29,7 @@
 
 .authenticate-sidebar__cta {
   display: flex;
-  column-gap: 8px;
+  column-gap: 4px;
   justify-content: center;
   font-size: 14px;
   font-weight: 500;

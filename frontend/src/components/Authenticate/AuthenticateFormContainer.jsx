@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 // components
 import Input from "../Input/Input";
@@ -9,16 +9,13 @@ import vkLogo from "../../assets/vk-social-network-logo.svg";
 import "./AuthenticateFormContainer.css";
 
 export default function AuthenticateFormContainer(props) {
-  const { viewState } = props;
-  const [isLoginState, setIsLoginState] = useState(
-    viewState === "login" ? true : false || true
-  );
-
-  useEffect(() => {
-    setIsLoginState(() => {
-      return viewState === "login" ? true : false;
-    });
-  }, [viewState]);
+  const {
+    isLoginState,
+    setIsLoginState,
+    formValues,
+    setFormValues,
+    formSubmitHandler,
+  } = props;
 
   const toggleFormState = () => {
     setIsLoginState((prevState) => {
@@ -36,37 +33,51 @@ export default function AuthenticateFormContainer(props) {
             {isLoginState ? "Welcome, we missed you!" : "Don't have an account"}
           </div>
         </div>
-        <div className="authenticate-form-container__form">
+        <form className="authenticate-form-container__form">
           <div className="authenticate-form-container__form__inputs">
             {isLoginState || (
               <Input
+                name="name"
                 label="Full Name"
                 type="text"
                 placeholder="Enter your name"
+                value={formValues.name}
+                setFormValues={setFormValues}
               />
             )}
             <Input
+              name="email"
               label="Your Email"
               type="email"
               placeholder="Enter your email"
+              value={formValues.email}
+              setFormValues={setFormValues}
             />
             <Input
+              name="password"
               label="Password"
               type="password"
               placeholder="Enter your password"
+              value={formValues.password}
+              setFormValues={setFormValues}
+              autocomplete="on"
             />
             {isLoginState || (
               <Input
+                name="repeatPassword"
                 label="Repeat Password"
                 type="password"
                 placeholder="Enter your password"
+                value={formValues.repeatPassword}
+                setFormValues={setFormValues}
+                autocomplete="on"
               />
             )}
           </div>
           {isLoginState && (
             <div className="authenticate-form-container__form-cta">
               <div className="authenticate-form-container__form-cta__remember-me">
-                <span class="checkmark"></span>
+                <span className="checkmark"></span>
                 Remember me
               </div>
               <div className="authenticate-form-container__form-cta__forgot-password">
@@ -76,6 +87,7 @@ export default function AuthenticateFormContainer(props) {
           )}
           <button
             className="authenticate-form-container__form__submit-btn"
+            onClick={formSubmitHandler}
             style={
               isLoginState
                 ? null
@@ -110,7 +122,7 @@ export default function AuthenticateFormContainer(props) {
           >
             {isLoginState ? "or, sign up" : "or, sign in"}
           </span>
-        </div>
+        </form>
       </div>
     </div>
   );

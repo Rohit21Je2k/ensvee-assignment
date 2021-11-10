@@ -7,9 +7,11 @@ import gamesLogo from "../../assets/games-logo.png";
 import "./AuthenticateSidebar.css";
 
 export default function AuthenticateSidebar(props) {
-  const { formStateHandler } = props;
+  const { isLoginState, setIsLoginState } = props;
   const toggleFormState = () => {
-    formStateHandler();
+    setIsLoginState((prevState) => {
+      return !prevState;
+    });
   };
   return (
     <div className="authenticate-sidebar">
@@ -22,7 +24,9 @@ export default function AuthenticateSidebar(props) {
       </div>
       <div className="authenticate-sidebar__cta">
         <span className="authenticate-sidebar__cta-text">
-          Don't have an account ?
+          {isLoginState === "login"
+            ? "Don't have an account?"
+            : "I have an account!"}
         </span>
         <span
           className="authenticate-sidebar__cta-link"
