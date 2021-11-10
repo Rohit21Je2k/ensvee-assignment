@@ -22,6 +22,10 @@ export default function AuthenticateFormContainer(props) {
       return !prevState;
     });
   };
+
+  const handleRememberMeCheckbox = (e) => {
+    e.target.classList.toggle("checked");
+  };
   return (
     <div className="authenticate-form-container">
       <div className="authenticate-form-container__wrapper">
@@ -33,7 +37,10 @@ export default function AuthenticateFormContainer(props) {
             {isLoginState ? "Welcome, we missed you!" : "Don't have an account"}
           </div>
         </div>
-        <form className="authenticate-form-container__form">
+        <form
+          onSubmit={formSubmitHandler}
+          className="authenticate-form-container__form"
+        >
           <div className="authenticate-form-container__form__inputs">
             {isLoginState || (
               <Input
@@ -43,6 +50,7 @@ export default function AuthenticateFormContainer(props) {
                 placeholder="Enter your name"
                 value={formValues.name}
                 setFormValues={setFormValues}
+                required="required"
               />
             )}
             <Input
@@ -52,6 +60,7 @@ export default function AuthenticateFormContainer(props) {
               placeholder="Enter your email"
               value={formValues.email}
               setFormValues={setFormValues}
+              required="required"
             />
             <Input
               name="password"
@@ -61,6 +70,7 @@ export default function AuthenticateFormContainer(props) {
               value={formValues.password}
               setFormValues={setFormValues}
               autocomplete="on"
+              required="required"
             />
             {isLoginState || (
               <Input
@@ -71,13 +81,17 @@ export default function AuthenticateFormContainer(props) {
                 value={formValues.repeatPassword}
                 setFormValues={setFormValues}
                 autocomplete="on"
+                required="required"
               />
             )}
           </div>
           {isLoginState && (
             <div className="authenticate-form-container__form-cta">
               <div className="authenticate-form-container__form-cta__remember-me">
-                <span className="checkmark"></span>
+                <span
+                  className="authenticate-form-container__form-cta__remember-me__checkmark"
+                  onClick={handleRememberMeCheckbox}
+                ></span>
                 Remember me
               </div>
               <div className="authenticate-form-container__form-cta__forgot-password">
@@ -86,8 +100,8 @@ export default function AuthenticateFormContainer(props) {
             </div>
           )}
           <button
+            type="submit"
             className="authenticate-form-container__form__submit-btn"
-            onClick={formSubmitHandler}
             style={
               isLoginState
                 ? null

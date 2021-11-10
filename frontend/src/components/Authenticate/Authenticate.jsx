@@ -49,6 +49,12 @@ export default function Authenticate() {
       }
       if (responseData.token) {
         alert(isLoginState ? "Logged in" : "User created");
+        setFormValues({
+          name: "",
+          email: "",
+          password: "",
+          repeatPassword: "",
+        });
       }
     } catch (err) {
       alert("Fetching Error");
