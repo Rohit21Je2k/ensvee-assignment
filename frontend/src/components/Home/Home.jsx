@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 
-import Users from "../Users/Users";
 import { AuthContext } from "../../util/context/auth-context";
 import { useNavigate } from "react-router-dom";
+
+import "./Home.css";
 
 export default function Home() {
   const auth = useContext(AuthContext);
@@ -13,11 +14,13 @@ export default function Home() {
   };
   return (
     <div className="home-page">
-      Home
-      <Users />
-      <button onClick={handleLogout} className="home-page__logout-btn">
-        Logout
-      </button>
+      <div className="wrapper">
+        <h1 className="home-page__title">User</h1>
+        <h3 className="home-page__user">Hello,</h3>
+        <button onClick={handleLogout} className="home-page__logout-btn">
+          Logout
+        </button>
+      </div>
     </div>
   );
 }
