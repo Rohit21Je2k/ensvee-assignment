@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import AuthenticateFormContainer from "./AuthenticateFormContainer";
 import AuthenticateSidebar from "./AuthenticateSidebar";
+import { AuthContext } from "../../util/context/auth-context";
+import { useNavigate } from "react-router-dom";
 
 import "./Authenticate.css";
 
 const apiURL = "https://ensvee.herokuapp.com";
 
 export default function Authenticate() {
+  const auth = useContext(AuthContext);
+  const navigate = useNavigate();
   const [isLoginState, setIsLoginState] = useState(true);
   const [formValues, setFormValues] = useState({
     name: "",
@@ -15,6 +19,11 @@ export default function Authenticate() {
     password: "",
     repeatPassword: "",
   });
+
+  console.log(auth.isLoggedIn);
+  if (auth.isLoggedIn) {
+    navigate("/home");
+  }
 
   const formSubmitHandler = async (e) => {
     e.preventDefault();
@@ -56,6 +65,8 @@ export default function Authenticate() {
           repeatPassword: "",
         });
       }
+
+      auth.login(responseData.userId, responseData.token);
     } catch (err) {
       alert("Fetching Error");
       console.log(err);
