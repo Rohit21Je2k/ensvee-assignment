@@ -4,6 +4,41 @@ import jwt from "jsonwebtoken";
 
 import User from "../models/user.js";
 
+export const getUser = async (req, res, next) => {
+  // validate inputs
+  const errors = validationResult(req);
+  if (!errors.isEmpty())
+    return res.status(422).send({
+      message: "Invalid Inputs",
+    });
+
+  // extract inputs
+  const { userId } = req.body;
+
+  // find user
+  let user;
+  try {
+    user = await User.findOne({ _id: userId });
+  } catch (err) {
+    return res.status(500).send({
+      message: "Server Error",
+    });
+  }
+
+  if (!user) {
+    return res.status(500).send({
+      message: "No User Found",
+    });
+  }
+
+  //   send response back
+  res.status(201).json({
+    userId: user.id,
+    email: user.email,
+    name: user.name,
+  });
+};
+
 export const getUsers = async (req, res, next) => {
   let users;
   try {

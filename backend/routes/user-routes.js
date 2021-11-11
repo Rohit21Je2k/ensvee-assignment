@@ -1,7 +1,12 @@
 import { Router } from "express";
 import { check } from "express-validator";
 
-import { getUsers, signup, login } from "../controllers/user-controller.js";
+import {
+  getUsers,
+  getUser,
+  signup,
+  login,
+} from "../controllers/user-controller.js";
 
 const router = Router();
 
@@ -26,6 +31,8 @@ router.post(
   login
 );
 
-router.get("/", getUsers);
+router.post("/", [check("userId").not().isEmpty()], getUser);
+
+router.get("/users", getUsers);
 
 export default router;
