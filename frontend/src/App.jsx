@@ -1,12 +1,16 @@
 import React from "react";
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 
 import { AuthContext } from "./util/context/auth-context";
 import { useAuth } from "./util/hooks/auth-hook";
 import Authenticate from "./components/Authenticate/Authenticate";
 import Home from "./components/Home/Home";
-import Redirect from "./components/Redirect/Redirect";
 
 import "./styles/main.css";
 
@@ -27,7 +31,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Authenticate />} />
           {token && <Route path="/home" element={<Home />} />}
-          <Route path="*" element={<Redirect />} />
+          <Route path="*" element={<Navigate replace to="/" />} />
         </Routes>
       </Router>
     </AuthContext.Provider>
